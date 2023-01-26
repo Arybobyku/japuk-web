@@ -19,23 +19,41 @@ defineProps({
                             <th scope="col" class="px-6 py-3">No</th>
                             <th scope="col" class="px-6 py-3">Nama</th>
                             <th scope="col" class="px-6 py-3">Email</th>
+                            <th scope="col" class="px-6 py-3">Role</th>
                             <th scope="col" class="px-6 py-3">Umkm</th>
                             <th scope="col" class="px-6 py-3">Logo</th>
-                            <th scope="col" class="px-6 py-3">Aksi </th>
+                            <th scope="col" class="px-6 py-3">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-white border-b" v-for='(user, index) in users'>
+                        <tr
+                            class="bg-white border-b"
+                            v-for="(user, index) in users"
+                        >
                             <th
                                 scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
                             >
-                                {{index+1}}
+                                {{ index + 1 }}
                             </th>
-                            <td class="px-6 py-4">  {{user.name}}</td>
-                            <td class="px-6 py-4">  {{user.email}}</td>
+                            <td class="px-6 py-4">{{ user.name }}</td>
+                            <td class="px-6 py-4">{{ user.email }}</td>
+                            <td class="px-6 py-4">
+                                {{
+                                    user.role == 2
+                                        ? "SuperAdmin"
+                                        : user.role == 1
+                                        ? "Admin"
+                                        : "User"
+                                }}
+                            </td>
                             <td class="px-6 py-4">{{ user.umkm.nama }}</td>
-                            <td class="px-6 py-4">  <img class="object-fill h-20 w-20" :src=" user.umkm.logo "></td>
+                            <td class="px-6 py-4">
+                                <img
+                                    class="object-fill h-20 w-20"
+                                    :src="user.umkm.logo"
+                                />
+                            </td>
                             <td class="px-6 py-4">
                                 <a
                                     href="#"

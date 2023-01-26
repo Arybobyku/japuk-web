@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\umkm;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -44,6 +45,23 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+        ]);
+
+        $logoUmkm = '';
+        if ($request->file('logo') != null) {
+            $ttd = $request->file('logo')->store('umkm');
+            $image = asset('storage/' . $ttd);
+
+            $logoUmkm= $image;
+        }
+
+
+        umkm::create([
+            'id_user'=>$user->id,
+            'nama'=>$request->nama,
+            'logo'=>$logoUmkm,
+            'alamat'=>$request->alamat,
+            'no_hp'=>$request->noHp,
         ]);
 
         event(new Registered($user));

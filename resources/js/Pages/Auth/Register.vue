@@ -12,6 +12,10 @@ const form = useForm({
     password: '',
     password_confirmation: '',
     terms: false,
+    nama:'',
+    logo:'',
+    alamat:'',
+    noHp:'',
 });
 
 const submit = () => {
@@ -85,6 +89,59 @@ const submit = () => {
                 />
 
                 <InputError class="mt-2" :message="form.errors.password_confirmation" />
+            </div>
+
+            <hr class="divide-x my-10"/>
+            <!-- UMKM -->
+
+            <div class="mt-4">
+                <InputLabel for="nama_umkm" value="Nama Umkm" />
+
+                <TextInput
+                    id="nama_umkm"
+                    type="text"
+                    class="mt-1 block w-full"
+                    v-model="form.nama"
+                    required
+                />
+
+            </div>
+
+            <div class="mt-4">
+                <InputLabel for="logo" value="Logo Umkm" />
+
+                <TextInput
+                    id="logo"
+                    type="file"
+                    class="mt-1 block w-full"
+                    @input="form.logo = $event.target.files[0]"
+                    required
+                />
+
+            </div>
+            <div class="mt-4">
+                <InputLabel for="alamat" value="Alamat" />
+
+                <TextInput
+                    id="alamat"
+                    type="text"
+                    class="mt-1 block w-full"
+                    v-model="form.alamat"
+                    required
+                />
+
+            </div>
+            <div class="mt-4">
+                <InputLabel for="noHp" value="No Handphone" />
+
+                <TextInput
+                    id="noHp"
+                    type="number"
+                    class="mt-1 block w-full"
+                    v-model="form.noHp"
+                    required
+                />
+
             </div>
 
             <div class="flex items-center justify-end mt-4">

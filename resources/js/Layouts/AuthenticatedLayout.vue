@@ -201,7 +201,7 @@ const showingNavigationDropdown = ref(false);
                                 </li>
                                 <li class="rounded-sm">
                                     <ResponsiveNavLink
-                                        :href="route('produk',$page.props.auth.user.id)"
+                                        :href="route('produk')"
                                         :active="route().current('produk')"
                                     >
                                         <svg

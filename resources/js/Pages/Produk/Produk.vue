@@ -3,24 +3,35 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/inertia-vue3";
 import Modal from "@/Components/Modal.vue";
 import Create from "./Create.vue";
+import Edit from "./Edit.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import Delete from "./Delete.vue";
 import { ref } from "vue";
-
 
 const props = defineProps({
     produks: Array,
 });
 
 const modalCreate = ref(false);
+const modalEdit = ref(false);
+const modalDelete = ref(false);
+const selected =ref(0);
 
-const showModal = (modal) => {
+const showModal = (modal,index) => {
     if (modal === "create") {
         modalCreate.value = true;
+    }else if (modal === "edit") {
+        modalEdit.value = true;
+        selected.value = index;
+    }else if(modal == "delete"){
+        modalDelete.value = true;
     }
 };
 
 const closeModal = () => {
     modalCreate.value = false;
+    modalEdit.value = false;
+    modalDelete.value = false;
 };
 </script>
 <template>
@@ -35,10 +46,21 @@ const closeModal = () => {
                 <table class="w-full text-sm text-left text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                         <tr>
+                            <th scope="col" class="px-6 py-3">
+                                <div>
+                                    <input
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                                        type="checkbox"
+                                        v-model="selectAll"
+                                        @click="select"
+                                    />
+                                    <i class="form-icon"></i>
+                                </div>
+                            </th>
                             <th scope="col" class="px-6 py-3">Nama</th>
-                            <th scope="col" class="px-6 py-3">Description</th>
+                            <th scope="col" class="px-6 py-3">Deskripsi</th>
                             <th scope="col" class="px-6 py-3">Harga</th>
-                            <th scope="col" class="px-6 py-3">Logo</th>
+                            <th scope="col" class="px-6 py-3">Gambar</th>
                             <th scope="col" class="px-6 py-3">Aksi</th>
                         </tr>
                     </thead>
@@ -55,8 +77,8 @@ const closeModal = () => {
                                 />
                                 <i class="form-icon"></i>
                             </td>
-                            <td class="px-6 py-4">{{ data.name }}</td>
-                            <td class="px-6 py-4">{{ data.description }}</td>
+                            <td class="px-6 py-4">{{ data.nama }}</td>
+                            <td class="px-6 py-4">{{ data.deskripsi }}</td>
                             <td class="px-6 py-4">{{ data.harga }}</td>
                             <td class="px-6 py-4">
                                 <img
@@ -65,11 +87,16 @@ const closeModal = () => {
                                 />
                             </td>
                             <td class="px-6 py-4">
-                                <!-- <a
+                                <a
                                     class="font-medium text-blue-600 hover:underline"
-                                    @click="showModalEdit"
-                                    >Edit</a -->
-                                >
+                                    @click="showModal('edit',index)"
+                                    >Edit
+                                </a>
+                                <a
+                                    class="font-medium text-red-600 hover:underline"
+                                    @click="showModal('delete')"
+                                    >Hapus
+                                </a>
                             </td>
                         </tr>
                     </tbody>
@@ -78,7 +105,15 @@ const closeModal = () => {
         </div>
     </AuthenticatedLayout>
 
-    <Modal :show="modalCreate" @close="closeModal" :max-width="xl">
-        <Create />
+    <Modal :show="modalCreate" @close="closeModal" >
+        <Create @close="closeModal" />
+    </Modal>
+
+    <Modal :show="modalEdit" @close="closeModal" >
+        <Edit @close="closeModal" :produk="produks[selected]"/>
+    </Modal>
+
+    <Modal :show="modalDelete" @close="closeModal" >
+        <Delete @close="closeModal" :produk="produks[selected]"/>
     </Modal>
 </template>

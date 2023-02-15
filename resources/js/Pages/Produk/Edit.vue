@@ -4,18 +4,23 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 
+const props = defineProps({
+    produk: Object,
+});
 const form = useForm({
-    nama: "",
-    deskripsi: "",
-    harga: "",
-    gambar: "",
+    id:props.produk.id,
+    nama: props.produk.nama,
+    deskripsi: props.produk.deskripsi,
+    harga: props.produk.harga,
+    gambar: null,
+    gambarDummy: props.produk.gambar,
 });
 
-const emit = defineEmits(['close']);
+const emit = defineEmits(["close"]);
 
 const submit = () => {
-    form.post(route('produk'),{
-        onFinish: () =>  emit('close'),
+    form.post(route("produk.edit"), {
+        onFinish: () => emit("close"),
     });
 };
 </script>
@@ -39,12 +44,15 @@ const submit = () => {
         <div class="mt-4">
             <InputLabel for="gambar" value="Gambar Produk" />
 
+            <td class="px-6 py-4">
+                <img class="object-fill h-20 w-20" :src="form.gambarDummy" />
+            </td>
+
             <TextInput
                 id="gambar"
                 type="file"
                 class="mt-1 block w-full"
                 @input="form.gambar = $event.target.files[0]"
-                required
             />
         </div>
         <div class="mt-4">

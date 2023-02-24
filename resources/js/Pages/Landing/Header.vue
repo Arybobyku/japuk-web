@@ -3,7 +3,7 @@ import { Head, Link } from "@inertiajs/inertia-vue3";
 </script>
 
 <template>
-    <header class="fixed w-full">
+    <header class=" w-full">
         <nav class="bg-white border-gray-200 py-2.5 dark:bg-gray-900">
             <div
                 class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto mt-2"

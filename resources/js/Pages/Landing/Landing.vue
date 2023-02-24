@@ -1,31 +1,37 @@
 <script setup>
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import Header from "./Header.vue";
-import Body1 from "./Body1.vue"
-import Body2 from "./Body2.vue"
-import Body3 from "./Body3.vue"
-import Body4 from "./Body4.vue"
+import Produks from "./Produks.vue";
+import Umkms from "./Umkms.vue";
+import Search from "./Search.vue";
+import Body3 from "./Body3.vue";
+import Body4 from "./Body4.vue";
 import Footer from "./Footer.vue";
 defineProps({
     canLogin: Boolean,
     canRegister: Boolean,
     laravelVersion: String,
     phpVersion: String,
+    produks: Array,
+    umkms: Array,
 });
 </script>
 
 <template>
     <Head title="Welcome" />
 
-    <Header />
+    <div>
+        <Header />
 
-    <Body1 />
+        <Body3 />
+        <!-- <Body4 /> -->
 
-    <Body2 />
+        <Search />
 
-    <Body3 />
+        <Umkms :umkms="umkms" />
 
-    <Body4 />
+        <Produks :produks="produks" />
 
-    <Footer />
+        <Footer />
+    </div>
 </template>

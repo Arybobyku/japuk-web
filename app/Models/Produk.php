@@ -15,4 +15,7 @@ class Produk extends Model
         'harga',
         'gambar',
     ];
+    public function umkm(){
+        return $this->hasOne(umkm::class,'id','id_umkm');
+    }
 }

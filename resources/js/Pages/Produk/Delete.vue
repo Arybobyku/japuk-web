@@ -1,21 +1,26 @@
 <script setup>
 import InputLabel from "@/Components/InputLabel.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 
+const props = defineProps({
+    produk: Object,
+});
 const form = useForm({
-    nama: "",
-    deskripsi: "",
-    harga: "",
-    gambar: "",
+    id:props.produk.id,
+    nama: props.produk.nama,
+    deskripsi: props.produk.deskripsi,
+    harga: props.produk.harga,
+    gambar: null,
+    gambarDummy: props.produk.gambar,
 });
 
-const emit = defineEmits(['close']);
+const emit = defineEmits(["close"]);
 
 const submit = () => {
-    form.post(route('produk'),{
-        onFinish: () =>  emit('close'),
+    form.post(route("produk.delete"), {
+        onFinish: () => emit("close"),
     });
 };
 </script>
@@ -33,18 +38,22 @@ const submit = () => {
                 class="mt-1 block w-full"
                 v-model="form.nama"
                 required
+            
             />
         </div>
 
         <div class="mt-4">
             <InputLabel for="gambar" value="Gambar Produk" />
 
+            <td class="px-6 py-4">
+                <img class="object-fill h-20 w-20" :src="form.gambarDummy" />
+            </td>
+
             <TextInput
                 id="gambar"
                 type="file"
                 class="mt-1 block w-full"
                 @input="form.gambar = $event.target.files[0]"
-                required
             />
         </div>
         <div class="mt-4">
@@ -71,12 +80,12 @@ const submit = () => {
         </div>
 
         <div class="mt-8">
-            <PrimaryButton
+            <SecondaryButton
                 :class="{ 'opacity-25': form.processing }"
                 :disabled="form.processing"
             >
-                Kirim
-            </PrimaryButton>
+                Hapus
+            </SecondaryButton>
         </div>
     </form>
 </template>

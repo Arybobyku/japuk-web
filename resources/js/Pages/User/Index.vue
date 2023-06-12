@@ -4,6 +4,7 @@ import { useForm } from "@inertiajs/inertia-vue3";
 import { Head } from "@inertiajs/inertia-vue3";
 import { ref } from 'vue';
 import Edit from './partials/edit.vue'
+import Delete from './partials/Delete.vue'
 
 import Modal from '@/Components/Modal.vue';
 import PrimaryButton from "@/Components/PrimaryButton.vue";
@@ -12,17 +13,17 @@ const props = defineProps({
     users: Array,
 });
 
-const modalEdit = ref(false);
+const modalDelete = ref(false);
 const selected = ref([]);
 const selectAll = ref(false);
 
-const showModalEdit = () => {
-    modalEdit.value = true;
+const showModalDelete = () => {
+    modalDelete.value = true;
 
 };
 
 const closeModal = () => {
-    modalEdit.value = false;
+    modalDelete.value = false;
 
 };
 
@@ -102,8 +103,8 @@ const select = () => {
                             <td class="px-6 py-4">
                                 <a
                                     class="font-medium text-blue-600 hover:underline"
-                                    @click="showModalEdit"
-                                    >Edit</a
+                                    @click="showModalDelete"
+                                    >Delete</a
                                 >
                             </td>
                         </tr>
@@ -112,8 +113,8 @@ const select = () => {
             </div>
         </div>
 
-        <Modal :show="modalEdit" @close="closeModal" :max-width="xl">
-            <Edit/>
+        <Modal :show="modalDelete" @close="closeModal" :max-width="xl">
+            <Delete/>
         </Modal>
         
     </AuthenticatedLayout>

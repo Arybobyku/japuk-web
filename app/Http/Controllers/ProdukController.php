@@ -15,7 +15,7 @@ class ProdukController extends Controller
         $produks = Produk::where('id_umkm', $id)->get();
 
         return Inertia::render('Produk/Produk', [
-            'produks' => $produks
+            'produks' => $produks,
         ]);
     }
 
@@ -26,7 +26,7 @@ class ProdukController extends Controller
         $gambar = '';
         if ($request->file('gambar') != null) {
             $ttd = $request->file('gambar')->store('produk');
-            $image = asset('storage/' . $ttd);
+            $image = asset('storage/'.$ttd);
 
             $gambar = $image;
         }
@@ -44,17 +44,16 @@ class ProdukController extends Controller
 
     public function edit(Request $request)
     {
-
         $gambar = '';
         if ($request->file('gambar') != null) {
             $ttd = $request->file('gambar')->store('produk');
-            $image = asset('storage/' . $ttd);
+            $image = asset('storage/'.$ttd);
 
             $gambar = $image;
 
             unlink($request->gambarDummy);
-        }else{
-           $gambar = $request->gambarDummy;
+        } else {
+            $gambar = $request->gambarDummy;
         }
 
         Produk::where('id', $request->id)->update([
@@ -67,8 +66,9 @@ class ProdukController extends Controller
         return redirect('produk');
     }
 
-    public function destroy(Request $request){
-        if ($request->gambarDummy!=null) {
+    public function destroy(Request $request)
+    {
+        if ($request->gambarDummy != null) {
             @unlink($request->gambarDummy);
         }
         Produk::destroy($request->id);

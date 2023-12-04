@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminEventController;
 use App\Http\Controllers\AdminMateriController;
+use App\Http\Controllers\AdminIsiMateriController;
+use App\Http\Controllers\AdminNewsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KomentarController;
 use App\Http\Controllers\LandingController;
@@ -35,6 +38,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/user${id}', [UserController::class, 'edit'])->name('user.edit');
 
     Route::get('/materi', [AdminMateriController::class, 'index'])->name('materi');
+    Route::post('/materi', [AdminMateriController::class, 'store'])->name('materi.store');
+    Route::post('/materiEdit', [AdminMateriController::class, 'edit'])->name('materi.edit');
+    Route::post('/materiDelete', [AdminMateriController::class, 'destroy'])->name('materi.delete');
+
+     Route::get('/isimateri', [AdminIsiMateriController::class, 'index'])->name('isimateri');
+    Route::post('/isimateri', [AdminIsiMateriController::class, 'store'])->name('isimateri.store');
+    Route::post('/isimateriEdit', [AdminIsiMateriController::class, 'edit'])->name('isimateri.edit');
+    Route::post('/isimateriDelete', [AdminIsiMateriController::class, 'destroy'])->name('isimateri.delete');
+
+    Route::get('/adminnews', [AdminNewsController::class, 'index'])->name('news');
+    Route::get('/adminevent', [AdminEventController::class, 'index'])->name('event');
 
     // Produk
     Route::get('/produk', [ProdukController::class, 'index'])->name('produk');
@@ -57,4 +71,4 @@ Route::middleware('auth', 'admin')->group(function () {
     Route::get('/user', [UserController::class, 'index'])->name('user');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

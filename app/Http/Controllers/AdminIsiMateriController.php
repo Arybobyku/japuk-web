@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Materi;
+use App\Models\IsiMateri;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class AdminMateriController extends Controller
+class AdminIsiMateriController extends Controller
 {
     public function index()
     {
-        $materis = Materi::all();
+        $materis = IsiMateri::all();
 
         return Inertia::render('AdminMateri/Index', [
             'materis' => $materis,
@@ -19,7 +19,7 @@ class AdminMateriController extends Controller
 
     public function store(Request $request)
     {
-        Materi::create([
+        IsiMateri::create([
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,
         ]);
@@ -29,7 +29,7 @@ class AdminMateriController extends Controller
 
     public function edit(Request $request)
     {
-        Materi::where('id', $request->id)->update([
+        IsiMateri::where('id', $request->id)->update([
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,
         ]);
@@ -39,6 +39,6 @@ class AdminMateriController extends Controller
 
     public function destroy(Request $request)
     {
-        Materi::destroy($request->id);
+        IsiMateri::destroy($request->id);
     }
 }

@@ -1,6 +1,8 @@
 <script setup>
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import Header from "./Header.vue";
+import Umkms from "./Umkms.vue";
+import Search from "./Search.vue";
 import Body3 from "./Body3.vue";
 import Body4 from "./Body4.vue";
 import Footer from "./Footer.vue";
@@ -9,8 +11,8 @@ defineProps({
     canRegister: Boolean,
     laravelVersion: String,
     phpVersion: String,
-    news: Array,
-    events: Array,
+    produks: Array,
+    umkms: Array,
 });
 </script>
 
@@ -20,9 +22,12 @@ defineProps({
     <div>
         <Header />
 
-        <Body3 :news="news" :events="events"/>
-        <!-- <Body4 /> -->
 
+        <Search />
+
+        <Umkms :umkms="umkms" />
+
+        <!-- <Produks :produks="produks" /> -->
 
         <Footer />
     </div>

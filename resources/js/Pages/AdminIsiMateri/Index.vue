@@ -3,7 +3,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head , Link} from "@inertiajs/inertia-vue3";
 import Modal from "@/Components/Modal.vue";
 // import Create from "./Create.vue";
-import Edit from "./Edit.vue";
+// import Edit from "./Edit.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import Pagination from "@/Components/Pagination.vue";
 import Delete from "./Delete.vue";

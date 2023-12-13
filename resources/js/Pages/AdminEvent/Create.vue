@@ -1,26 +1,21 @@
 <script setup>
 import InputLabel from "@/Components/InputLabel.vue";
-import SecondaryButton from "@/Components/SecondaryButton.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
 import TextareaInput from "@/Components/TextareaInput.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 
-const props = defineProps({
-    item: Object,
-});
 const form = useForm({
-    id: props.item.id,
-    title: props.item.title,
-    isi: props.item.isi,
-    gambar: null,
-    gambarDummy: props.item.image,
+    title: "",
+    isi: "",
+    image: "",
 });
 
-const emit = defineEmits(["close"]);
+const emit = defineEmits(['close']);
 
 const submit = () => {
-    form.post(route("adminnews.delete"), {
-        onFinish: () => emit("close"),
+    form.post(route('adminevent'),{
+        onFinish: () =>  emit('close'),
     });
 };
 </script>
@@ -30,34 +25,29 @@ const submit = () => {
         <!-- UMKM -->
 
         <div class="mt-4">
-            <InputLabel for="title" value="Judul" />
+            <InputLabel for="title" value="Judul Berita" />
 
             <TextInput
-                id="title"
+                id="nama"
                 type="text"
                 class="mt-1 block w-full"
                 v-model="form.title"
                 required
-            
             />
         </div>
+            <div class="mt-4">
+                <InputLabel for="image" value="Gambar Berita" />
 
+                <TextInput
+                    id="image"
+                    type="file"
+                    class="mt-1 block w-full"
+                    @input="form.image = $event.target.files[0]"
+                    required
+                />
+            </div>
         <div class="mt-4">
-            <InputLabel for="gambar" value="Gambar Produk" />
-
-            <td class="px-6 py-4">
-                <img class="object-fill h-20 w-20" :src="form.gambarDummy" />
-            </td>
-
-            <TextInput
-                id="gambar"
-                type="file"
-                class="mt-1 block w-full"
-                @input="form.gambar = $event.target.files[0]"
-            />
-        </div>
-        <div class="mt-4">
-            <InputLabel for="deskripsi" value="Deskripsi" />
+            <InputLabel for="isi" value="Isi" />
 
             <TextareaInput
                 id="deskripsi"
@@ -67,15 +57,14 @@ const submit = () => {
                 required
             />
         </div>
-
-
+       
         <div class="mt-8">
-            <SecondaryButton
+            <PrimaryButton
                 :class="{ 'opacity-25': form.processing }"
                 :disabled="form.processing"
             >
-                Hapus
-            </SecondaryButton>
+                Kirim
+            </PrimaryButton>
         </div>
     </form>
 </template>

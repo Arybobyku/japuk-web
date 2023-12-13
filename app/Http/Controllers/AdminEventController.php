@@ -16,11 +16,13 @@ class AdminEventController extends Controller
             'id' => $item->id,
             'title' => $item->title,
             'excerpt' => $item->excerpt,
+            'image' => $item->image,
+            'isi' => $item->isi,
             // etc
                 ];
         });
 
-        return Inertia::render('AdminNews/Index', [
+        return Inertia::render('AdminEvent/Index', [
             'items' => $items,
         ]);
     }

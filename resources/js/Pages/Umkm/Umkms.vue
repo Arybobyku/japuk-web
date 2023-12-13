@@ -1,6 +1,4 @@
 <script setup>
-// import route from 'vendor/tightenco/ziggy/src/js';
-
 const props = defineProps({
     umkms: Array,
 });
@@ -15,9 +13,9 @@ const props = defineProps({
         <div
         class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5"
         >
-            <div v-for="(data, index) in umkms" :key="data.id">
-                <a :href="route('produkumkm', data.id)" class="rounded overflow-hidden shadow-lg">
-                    <img class="w-full h-56" :src="data.logo" alt="Logo" />
+            <div v-for="(data, index) in umkms">
+                <div class="rounded overflow-hidden shadow-lg">
+                    <img class="w-full h-56" :src="data.logo" alt="Mountain" />
                     <div class="px-6 py-4">
                         <h5 class="font-bold text-xl mb-2">
                             {{ data.nama }}
@@ -26,7 +24,7 @@ const props = defineProps({
                         <p class="text-sm  font-light">{{ data.no_hp }} </p>
                     </div>
 
-                </a>
+                </div>
             </div>
         </div>
     </section>

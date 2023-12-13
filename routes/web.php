@@ -9,6 +9,7 @@ use App\Http\Controllers\KomentarController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UmkmController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -25,6 +26,11 @@ use Inertia\Inertia;
 */
 
 Route::get('/', [LandingController::class, 'index'])->name('landing');
+Route::get('/news', [LandingController::class, 'news'])->name('news');
+Route::get('/news/{news}', [LandingController::class, 'newsDetail'])->name('news.detail');
+Route::get('/event', [LandingController::class, 'event'])->name('event');
+Route::get('/umkm', [UmkmController::class, 'index'])->name('umkm');
+Route::get('/umkm/{id}', [UmkmController::class, 'produks'])->name('produkumkm');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -51,8 +57,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/adminnews', [AdminNewsController::class, 'index'])->name('adminnews');
     Route::post('/adminnews', [AdminNewsController::class, 'store'])->name('adminnews.store');
+    Route::post('/adminnewsEdit', [AdminNewsController::class, 'edit'])->name('adminnews.edit');
+    Route::post('/adminnewsDelete', [AdminNewsController::class, 'destroy'])->name('adminnews.delete');
 
     Route::get('/adminevent', [AdminEventController::class, 'index'])->name('adminevent');
+    Route::post('/adminevent', [AdminEventController::class, 'store'])->name('adminevent.store');
+    Route::post('/admineventEdit', [AdminEventController::class, 'edit'])->name('adminevent.edit');
+    Route::post('/admineventDelete', [AdminEventController::class, 'destroy'])->name('adminevent.delete');
 
     // Produk
     Route::get('/produk', [ProdukController::class, 'index'])->name('produk');

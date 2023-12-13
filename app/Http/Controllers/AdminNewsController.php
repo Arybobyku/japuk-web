@@ -15,6 +15,8 @@ class AdminNewsController extends Controller
             return [
             'id' => $item->id,
             'title' => $item->title,
+            'isi' => $item->isi,
+            'image' => $item->image,
             'excerpt' => $item->excerpt,
             // etc
                 ];
@@ -48,13 +50,13 @@ class AdminNewsController extends Controller
     public function edit(Request $request)
     {
         $gambar = '';
-        if ($request->file('image') != null) {
-            $ttd = $request->file('image')->store('news');
+        if ($request->file('gambar') != null) {
+            $ttd = $request->file('gambar')->store('news');
             $image = asset('storage/'.$ttd);
 
             $gambar = $image;
 
-            unlink($request->gambarDummy);
+            // unlink($request->gambarDummy);
         } else {
             $gambar = $request->gambarDummy;
         }
@@ -72,7 +74,7 @@ class AdminNewsController extends Controller
     public function destroy(Request $request)
     {
         if ($request->gambarDummy != null) {
-            @unlink($request->gambarDummy);
+            // @unlink($request->gambarDummy);
         }
         News::destroy($request->id);
     }

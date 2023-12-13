@@ -20,6 +20,8 @@
         "vue": "^3.2.41"
     },
     "dependencies": {
+        "@splidejs/splide-extension-auto-scroll": "^0.5.3",
+        "@splidejs/vue-splide": "^0.6.12",
         "vue-uuid": "^3.0.0"
     }
 }

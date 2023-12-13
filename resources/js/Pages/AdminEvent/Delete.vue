@@ -1,6 +1,6 @@
 <script setup>
 import InputLabel from "@/Components/InputLabel.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
 import TextareaInput from "@/Components/TextareaInput.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
@@ -19,7 +19,7 @@ const form = useForm({
 const emit = defineEmits(["close"]);
 
 const submit = () => {
-    form.post(route("adminnews.edit"), {
+    form.post(route("adminevent.delete"), {
         onFinish: () => emit("close"),
     });
 };
@@ -30,9 +30,16 @@ const submit = () => {
         <!-- UMKM -->
 
         <div class="mt-4">
-            <InputLabel for="nama" value="Nama Produk" />
+            <InputLabel for="title" value="Judul" />
 
-            <TextInput id="nama" type="text" class="mt-1 block w-full" v-model="form.title" required />
+            <TextInput
+                id="title"
+                type="text"
+                class="mt-1 block w-full"
+                v-model="form.title"
+                required
+            
+            />
         </div>
 
         <div class="mt-4">
@@ -42,19 +49,33 @@ const submit = () => {
                 <img class="object-fill h-20 w-20" :src="form.gambarDummy" />
             </td>
 
-            <TextInput id="gambar" type="file" class="mt-1 block w-full" @input="form.gambar = $event.target.files[0]" />
+            <TextInput
+                id="gambar"
+                type="file"
+                class="mt-1 block w-full"
+                @input="form.gambar = $event.target.files[0]"
+            />
         </div>
         <div class="mt-4">
-            <InputLabel for="isi" value="Isi" />
+            <InputLabel for="deskripsi" value="Deskripsi" />
 
-            <TextareaInput id="isi" type="text" class="mt-1 block w-full" v-model="form.isi" required />
+            <TextareaInput
+                id="deskripsi"
+                type="text"
+                class="mt-1 block w-full"
+                v-model="form.isi"
+                required
+            />
         </div>
-       
+
 
         <div class="mt-8">
-            <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Kirim
-            </PrimaryButton>
+            <SecondaryButton
+                :class="{ 'opacity-25': form.processing }"
+                :disabled="form.processing"
+            >
+                Hapus
+            </SecondaryButton>
         </div>
     </form>
 </template>

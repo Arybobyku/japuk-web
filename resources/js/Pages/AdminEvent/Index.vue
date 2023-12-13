@@ -35,7 +35,7 @@ const closeModal = () => {
 };
 </script>
 <template>
-    <Head title="Materi" />
+    <Head title="Event" />
 
     <AuthenticatedLayout>
         <div class="mx-20 my-10">

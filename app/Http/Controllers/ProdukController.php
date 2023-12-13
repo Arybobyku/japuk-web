@@ -51,7 +51,7 @@ class ProdukController extends Controller
 
             $gambar = $image;
 
-            unlink($request->gambarDummy);
+            // unlink($request->gambarDummy);
         } else {
             $gambar = $request->gambarDummy;
         }

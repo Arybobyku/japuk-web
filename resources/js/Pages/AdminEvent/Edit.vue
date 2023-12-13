@@ -19,7 +19,7 @@ const form = useForm({
 const emit = defineEmits(["close"]);
 
 const submit = () => {
-    form.post(route("adminnews.edit"), {
+    form.post(route("adminevent.edit"), {
         onFinish: () => emit("close"),
     });
 };

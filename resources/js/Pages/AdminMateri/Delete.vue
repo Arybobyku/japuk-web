@@ -5,21 +5,18 @@ import TextInput from "@/Components/TextInput.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 
 const props = defineProps({
-    produk: Object,
+    materi: Object,
 });
 const form = useForm({
-    id:props.produk.id,
-    nama: props.produk.nama,
-    deskripsi: props.produk.deskripsi,
-    harga: props.produk.harga,
-    gambar: null,
-    gambarDummy: props.produk.gambar,
+    id:props.materi.id,
+    nama: props.materi.nama,
+    deskripsi: props.materi.deskripsi,
 });
 
 const emit = defineEmits(["close"]);
 
 const submit = () => {
-    form.post(route("produk.delete"), {
+    form.post(route("materi.delete"), {
         onFinish: () => emit("close"),
     });
 };
@@ -43,20 +40,6 @@ const submit = () => {
         </div>
 
         <div class="mt-4">
-            <InputLabel for="gambar" value="Gambar Produk" />
-
-            <td class="px-6 py-4">
-                <img class="object-fill h-20 w-20" :src="form.gambarDummy" />
-            </td>
-
-            <TextInput
-                id="gambar"
-                type="file"
-                class="mt-1 block w-full"
-                @input="form.gambar = $event.target.files[0]"
-            />
-        </div>
-        <div class="mt-4">
             <InputLabel for="deskripsi" value="Deskripsi" />
 
             <TextInput
@@ -67,17 +50,7 @@ const submit = () => {
                 required
             />
         </div>
-        <div class="mt-4">
-            <InputLabel for="harga" value="Harga" />
 
-            <TextInput
-                id="harga"
-                type="number"
-                class="mt-1 block w-full"
-                v-model="form.harga"
-                required
-            />
-        </div>
 
         <div class="mt-8">
             <SecondaryButton

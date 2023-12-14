@@ -5,15 +5,15 @@ import TextInput from "@/Components/TextInput.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 
 const props = defineProps({
-    produk: Object,
+    item: Object,
 });
 const form = useForm({
-    id:props.produk.id,
-    nama: props.produk.nama,
-    deskripsi: props.produk.deskripsi,
-    harga: props.produk.harga,
+    id:props.item.id,
+    judul: props.item.judul,
+    sub_bab: props.item.sub_bab,
+    isi: props.item.isi,
     gambar: null,
-    gambarDummy: props.produk.gambar,
+    gambarDummy: props.item.gambar,
 });
 
 const emit = defineEmits(["close"]);
@@ -30,13 +30,13 @@ const submit = () => {
         <!-- UMKM -->
 
         <div class="mt-4">
-            <InputLabel for="nama" value="Nama Produk" />
+            <InputLabel for="nama" value="Judul" />
 
             <TextInput
                 id="nama"
                 type="text"
                 class="mt-1 block w-full"
-                v-model="form.nama"
+                v-model="form.judul"
                 required
             
             />

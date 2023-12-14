@@ -4,6 +4,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import SelectInput from "@/Components/SelectInput.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 
+import TextareaInput from "@/Components/TextareaInput.vue";
 import TextInput from "@/Components/TextInput.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
@@ -52,7 +53,7 @@ const submit = () => {
                 <TextInput
                     id="gambar"
                     type="file"
-                    class="mt-1 block w-full"
+                    class="mt-1 block w-full lg:w-1/2"
                     @input="form.gambar = $event.target.files[0]"
                     required
                 />
@@ -61,7 +62,7 @@ const submit = () => {
             <div class="mt-4">
                 <InputLabel for="deskripsi" value="Isi" />
 
-                <TextInput id="deskripsi" type="text" class="mt-1 block w-full lg:w-1/2" v-model="form.isi" required />
+                <TextareaInput id="deskripsi" type="text" class="mt-1 block -full lg:w-1/2" v-model="form.isi" required />
             </div>
 
 

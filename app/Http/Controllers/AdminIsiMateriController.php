@@ -76,8 +76,11 @@ class AdminIsiMateriController extends Controller
         return redirect('isimateri');
     }
 
-    public function destroy(Request $request)
+    public function destroy(IsiMateri $isimateri)
     {
-        IsiMateri::destroy($request->id);
+        $isimateri->delete();
+        sleep(1);
+
+        return redirect('isimateri');
     }
 }
